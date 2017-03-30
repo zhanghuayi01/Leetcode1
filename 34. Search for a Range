@@ -1,0 +1,40 @@
+class Solution(object):
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        l,r = 0,len(nums)-1
+        lb,rb = -1,-1
+        
+        if not nums:
+            return [lb,rb]
+        if nums[l] ==target and nums[r] == target:
+            return [0,len(nums)-1]
+        while r - l > 1:
+           mid = (l + r)/2
+           if nums[mid] >= target:
+               r = mid
+           else:
+               l = mid
+        if nums[r] == target and nums[l] < target:
+           lb = r
+           
+        l,r = 0,len(nums)-1
+        while r - l > 1:
+           mid = (l + r)/2
+           if nums[mid] <= target:
+               l = mid
+           else:
+               r = mid
+        if nums[l] == target and nums[r] > target:
+           rb = l
+        print (rb)
+           
+        if rb == -1 and lb != -1:
+            rb = len(nums)-1
+        if lb == -1 and rb != -1:
+            lb = 0
+            
+        return [lb,rb]
