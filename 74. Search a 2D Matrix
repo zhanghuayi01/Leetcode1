@@ -1,0 +1,24 @@
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        row = len(matrix)
+        col = len(matrix[0])
+        
+        low = 0
+        high = col*row - 1
+        
+        while low <= high:
+            mid = (high + low)/2
+            num = matrix[mid/col][mid%col]
+            
+            if num < target:
+                low = mid + 1
+            elif num >target:
+                high = mid - 1
+            else: return True
+        
+        return False
