@@ -1,0 +1,47 @@
+class Solution(object):
+    def fourSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        if len(nums) < 4:
+            return []
+        nums.sort()
+        result = []
+        i = 0
+        while i < len(nums) - 3:
+            temp = []
+            temp = self.threeSum(nums[i+1:],target - nums[i])
+            for lst in temp:
+                lst.append(nums[i])
+                lst.sort()
+                if lst not in result:
+                    result.append(lst)
+            i = i + 1
+                
+        return result
+        
+        
+    def threeSum(self,nums,target):
+        nums.sort()
+        i = 0
+        result = []
+        while i < len(nums) - 2:
+            l = i + 1
+            r = len(nums) - 1
+            while l<r:
+                if nums[l] + nums[r] + nums[i] == target:
+                    result.append([nums[l],nums[i],nums[r]])
+                    l = l + 1
+                    r = r - 1
+                    while nums[l] == nums[l-1] and l < r:
+                        l = l + 1
+                    while nums[r] == nums[r+1] and l < r:
+                        r = r - 1
+                elif nums[l] + nums[r] + nums[i] > target:
+                    r = r -1
+                else:
+                    l = l +1
+            i = i + 1
+        return result
