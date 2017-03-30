@@ -1,0 +1,14 @@
+class Solution(object):
+    def rotate(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: void Do not return anything, modify matrix in-place instead.
+        """
+        le =len(matrix) - 1
+        for i in range((le + 1)/2):
+            for j in range((le + 2)/2):
+                t = matrix[i][j]
+                matrix[i][j] = matrix[le-j][i]
+                matrix[le-j][i] = matrix[le-i][le-j]
+                matrix[le-i][le-j] = matrix[j][le-i]
+                matrix[j][le-i] = t
