@@ -1,0 +1,25 @@
+class Solution(object):
+    def findAnagrams(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: List[int]
+        """
+        dic = {}
+        temp = {}
+        lenp = len(p)
+        res = []
+        for l in p:
+            dic[l] = dic.get(l,0) + 1
+        for l in s[0:lenp]:
+            temp[l] = temp.get(l,0) + 1
+            if temp == dic:
+                res.append(0)
+        for i in xrange(1,len(s)-lenp+1):
+            temp[s[i-1]] -= 1
+            if temp[s[i-1]] == 0:
+                del temp[s[i-1]]
+            temp[s[i+lenp-1]] = temp.get(s[i+lenp-1],0) + 1
+            if temp == dic:
+                res.append(i)
+        return res
