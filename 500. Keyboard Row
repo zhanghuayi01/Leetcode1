@@ -1,0 +1,29 @@
+class Solution(object):
+    def findWords(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        dic = {}
+        lst = []
+        res = []
+        r1 = 'qwertyuiop'
+        r2 = 'asdfghjkl'
+        r3 = 'zxcvbnm'
+        lst = [r1,r2,r3]
+        for ind,i in enumerate(lst):
+            for l in i:
+                dic[l] = ind
+        for string in words:
+            stringl = string.lower()
+            idc = -1
+            boo = True
+            for i in stringl:
+                if idc == -1:
+                    idc = dic[i]
+                if dic[i] != idc:
+                    boo = False
+            if boo:
+                res.append(string)
+                
+        return res
