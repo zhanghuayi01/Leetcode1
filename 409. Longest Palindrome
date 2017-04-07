@@ -1,0 +1,20 @@
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        res = 0
+        odd = True
+        dic = {}
+        for i in s:
+            dic[i] = dic.get(i,0) + 1
+        for key in dic:
+            if dic[key]%2 == 0:
+                res += dic[key]
+            elif odd == True:
+                res += dic[key]
+                odd = False
+            else:
+                res += dic[key] -1
+        return res
