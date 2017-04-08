@@ -1,0 +1,12 @@
+class Solution(object):
+    def islandPerimeter(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        I = len(grid)
+        J = len(grid[0])
+        def Perimeter(x,y):
+            return grid[x][y] if 0<= x < I and 0<=y < J else 0
+            
+        return sum((Perimeter(x,y)^Perimeter(x,y-1)) + (Perimeter(x,y)^Perimeter(x-1,y)) for x in xrange(I+1) for y in xrange(J+1))
