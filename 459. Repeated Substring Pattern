@@ -1,0 +1,9 @@
+class Solution(object):
+    def repeatedSubstringPattern(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        new = s + s
+        temp = new[1:-1]
+        return temp.find(s) != -1
