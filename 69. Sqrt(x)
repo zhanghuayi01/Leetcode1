@@ -1,0 +1,23 @@
+class Solution(object):
+    def mySqrt(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if x == 1:
+            return 1
+        l,r = 0,x
+        mido = 0
+        while l<r:
+            mid = (l+r)/2
+            if mid == mido:
+                return mid
+            if mid*mid > x:
+                r = mid
+                mido = mid
+            elif mid*mid < x:
+                l = mid
+                mido = mid
+            else:
+                return mid
+        return mido
