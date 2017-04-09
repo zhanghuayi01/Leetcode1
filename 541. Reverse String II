@@ -1,0 +1,30 @@
+class Solution(object):
+    def reverseStr(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        ink = True
+        l = list(s)
+        res = []
+        ind = 0
+        while ind+k < len(l):
+            temp = l[ind:ind+k]
+            if ink == True:
+                temp.reverse()
+                res = res + temp
+                ink = False
+                ind = ind + k
+            else:
+                res =res + temp
+                ink = True
+                ind = ind + k
+                
+        if ink == True:
+            temp = l[ind:]
+            temp.reverse()
+            res += temp
+        else:
+            res += l[ind:]
+        return ''.join(res)
