@@ -1,0 +1,30 @@
+class Solution(object):
+    def summaryRanges(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        if not nums:
+            return []
+        res = []
+        temp = ''
+        start = nums[0]
+        end = None
+        
+        for i in xrange(1,len(nums)):
+            if nums[i] - nums[i-1] > 1 and end != nums[i-1]:
+                end = nums[i-1]
+                if start != end:
+                    temp = str(start) + '->' + str(end)
+                else:
+                    temp = str(start)
+                res.append(temp)
+                start = nums[i]
+        end = nums[len(nums) -1]
+        if start != end:
+            temp = str(start) + '->' + str(end)
+        else:
+            temp = str(start)
+        res.append(temp)
+        
+        return res
