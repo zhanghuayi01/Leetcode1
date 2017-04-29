@@ -1,0 +1,36 @@
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        news = ''
+        l = 0
+        left = 1
+        right = 2
+        for i in range(0,len(s)):
+            news = news + '#'
+            news = news + str(s[i])
+        news = news + '#'
+        
+        for i in range(0,len(news)):
+            j = 0
+            while j < min([i,len(news)-i]):
+                if news[i + j] == news[i - j]:
+                    j = j + 1
+                    if l < 2*j:
+                        l = 2*j
+                        left = i - j + 1
+                        right = i + j
+                else:
+                    if 2*j > l:
+                        l = 2*j
+                        left = i - j + 1
+                        right = i + j
+                        j = min([i,len(news)-i])
+                    else:
+                        j = min([i,len(news)-i])
+        subl =  news[left:right].split('#')
+        subs = ''.join(subl).strip()
+        return subs
+        
