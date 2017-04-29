@@ -1,0 +1,18 @@
+class Solution(object):
+    def findPoisonedDuration(self, timeSeries, duration):
+        """
+        :type timeSeries: List[int]
+        :type duration: int
+        :rtype: int
+        """
+        if not timeSeries:
+            return 0
+        sum = 0
+        for i in xrange(len(timeSeries)-1):
+            if timeSeries[i+1] - timeSeries[i] < duration:
+                sum += timeSeries[i+1] - timeSeries[i]
+            else:
+                sum += duration
+        sum += duration
+        
+        return sum
