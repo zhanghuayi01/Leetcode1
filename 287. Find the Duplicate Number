@@ -1,0 +1,12 @@
+class Solution(object):
+    def findDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        for i in xrange(n):
+            loc = abs(nums[i]) - 1
+            if nums[loc] < 0:
+                return loc + 1
+            nums[loc] = -abs(nums[loc])
