@@ -1,0 +1,18 @@
+class Solution(object):
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        res = []
+        self.getsol(k,xrange(1,10),0,n,[],res)
+        return res
+        
+    def getsol(self,k,lst,index,n,temp,res):
+        if k == 0 and n==0:
+            res.append(temp)
+        if k < 0 or n < 0:
+            return
+        for i in xrange(index,len(lst)):
+            self.getsol(k-1,lst,i+1,n-lst[i],temp + [lst[i]],res)
