@@ -1,0 +1,24 @@
+class Solution(object):
+    def matrixReshape(self, nums, r, c):
+        """
+        :type nums: List[List[int]]
+        :type r: int
+        :type c: int
+        :rtype: List[List[int]]
+        """
+        res = []
+        r1,c1 = len(nums),len(nums[0])
+        if r1 * c1 != r * c:
+            return nums
+        
+        temp = []
+        
+        for i in xrange(r1):
+            temp += nums[i]
+            
+        for i in xrange(r):
+            lst = []
+            for j in xrange(c):
+                lst.append(temp[c*i +j])
+            res.append(lst)
+        return res
