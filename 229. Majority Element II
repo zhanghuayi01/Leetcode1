@@ -1,0 +1,30 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        a,b = 0,1
+        temp1=temp2 = 0
+        if not nums:
+            return []
+        for i in xrange(len(nums)):
+            if nums[i] == a:
+                temp1 += 1
+            elif nums[i] == b:
+                temp2 += 1
+            elif temp1 == 0:
+                a = nums[i]
+                temp1 = 1
+            elif temp2 == 0:
+                b = nums[i]
+                temp2 = 1
+            else:
+                temp1 -= 1
+                temp2 -= 1
+        print a,b
+        return [n for n in (a,b) if nums.count(n)>len(nums)//3]
+        
+        
+        
+        
