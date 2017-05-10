@@ -1,0 +1,26 @@
+class Solution(object):
+    def numberOfArithmeticSlices(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        def countslice(n):
+            res = 0
+            for i in range(2,n):
+                res += n-i
+            return res
+        
+        l,res = 0,0
+        for r in range(2,len(A)):
+            if A[r] - A[r-1] != A[r-1] - A[r-2] and r-l > 2:
+                n = r-l
+                res += countslice(n)
+                l = r-1
+            elif A[r] - A[r-1] != A[r-1] - A[r-2] and r-l <= 2:
+                l = r-1
+            else:
+                continue
+        r = len(A)-1
+        if r-l > 1:
+            res += countslice(r-l+1)
+        return res
