@@ -1,0 +1,18 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def findBottomLeftValue(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        pattern = [root]
+        while any(pattern):
+            ans = pattern[0].val
+            pattern = [leaf for node in pattern for leaf in (node.left,node.right) if leaf]
+        return ans
