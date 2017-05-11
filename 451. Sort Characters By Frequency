@@ -1,0 +1,19 @@
+import operator
+class Solution(object):
+    def frequencySort(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        sdic = {}
+        for i in s:
+            sdic[i] = sdic.get(i,0)+1
+            
+        sorted_sdic = sorted(sdic.items(), key=operator.itemgetter(1),reverse = True)
+        
+        res = ''
+        
+        for j in sorted_sdic:
+            res += j[0]*j[1]
+        
+        return res
