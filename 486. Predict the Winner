@@ -1,0 +1,34 @@
+# class Solution(object):
+#     def PredictTheWinner(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: bool
+#         """
+#         def calscore(l,r,dic):
+#             if l > r: 
+#                 return 0
+#             if l == r: 
+#                 return nums[l]
+#             if not (l,r) in dic:
+#                 l,r = - calscore(l+1,r,dic)+nums[l], - calscore(l,r-1,dic) + nums[r]
+#                 dic[(l,r)] = max(l,r)
+#             return dic[(l,r)]
+#         res = calscore(0,len(nums)-1,{})
+#         return res >= 0
+        
+class Solution(object):
+    def PredictTheWinner(self, nums):
+        def check(left, right, memo):
+            if left > right:
+                return 0
+            if left == right:
+                return nums[left]
+            if not (left, right) in memo:
+                # ss = sum(nums[left: right + 1])
+                # l, r = ss - check(left + 1, right, memo, depth+1) + nums[left], ss - check(left, right - 1, memo, depth+1) + nums[right]
+                l, r = - check(left + 1, right, memo) + nums[left], - check(left, right - 1, memo) + nums[right]
+                memo[(left, right)] = max(l, r)
+            return memo[(left, right)]
+
+        c1 = check(0, len(nums) - 1, {})
+        return c1 >= 0
