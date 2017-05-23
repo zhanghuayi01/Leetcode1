@@ -1,0 +1,27 @@
+class Solution(object):
+    def killProcess(self, pid, ppid, kill):
+        """
+        :type pid: List[int]
+        :type ppid: List[int]
+        :type kill: int
+        :rtype: List[int]
+        """
+        dict = {}
+        for i,v in enumerate(ppid):
+            if v not in dict:
+                dict[v] = [pid[i]]
+            else:
+                dict[v] += [pid[i]]
+        res = [kill]
+        self.kills(pid,ppid,[kill],dict,res)
+        return res
+        
+        
+    def kills(self,pid,ppid,kill,dict,res):
+        if not kill: return
+        for k in kill:
+            if k in dict:
+                res += dict[k]
+                self.kills(pid,ppid,dict[k],dict,res)
+            else:
+                continue
