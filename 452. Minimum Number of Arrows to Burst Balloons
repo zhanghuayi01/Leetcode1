@@ -1,0 +1,19 @@
+class Solution(object):
+    def findMinArrowShots(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        if not points: return 0
+        count = 0
+        lst = sorted(points,key = lambda i: i[0])
+        temp = lst[0]
+        for ran in lst[1:]:
+            if temp [1] >= ran[0]:
+                temp[0] = ran[0]
+                temp[1] = min(temp[1],ran[1])
+            else:
+                count += 1
+                temp = ran
+        count += 1
+        return count
