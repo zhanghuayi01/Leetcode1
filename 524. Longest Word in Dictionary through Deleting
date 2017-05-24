@@ -1,0 +1,30 @@
+class Solution(object):
+    def findLongestWord(self, s, d):
+        """
+        :type s: str
+        :type d: List[str]
+        :rtype: str
+        """
+        d = sorted(d,key = lambda x: len(x),reverse = True)
+        
+        def helper(string,s):
+            s = iter(s)
+            if all(c in s for c in string):
+                return string
+        
+        pre = 0
+        res = []
+        for string in d:
+            temp = helper(string,s)
+            if temp and len(temp) >= pre:
+                pre = len(temp)
+                res += [temp]
+                
+        if not res: return ''
+        minchr = 1000
+        for i in res:
+            if ord(i[0]) < minchr:
+                t = i
+                minchr = ord(i[0])
+        
+        return t
