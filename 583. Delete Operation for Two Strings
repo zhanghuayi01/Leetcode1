@@ -1,0 +1,20 @@
+class Solution(object):
+    def minDistance(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        """
+        dic = {}
+        def helper(i,j):
+            if (i,j) not in dic:
+                if i == len(word1) or j == len(word2):
+                    res = len(word1) + len(word2) -i - j
+                elif word1[i] == word2[j]:
+                    res = helper(i+1,j+1)
+                else:
+                    res = 1 + min(helper(i+1,j),helper(i,j+1))
+                dic[i,j] = res
+            return dic[i,j]
+        
+        return helper(0,0)
