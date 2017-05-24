@@ -1,0 +1,17 @@
+class Solution(object):
+    def leastBricks(self, wall):
+        """
+        :type wall: List[List[int]]
+        :rtype: int
+        """
+        width = sum(wall[0])
+        dic = {}
+        for lvl in wall:
+            temp = 0
+            for point in lvl:
+                temp += point
+                dic[temp] = dic.get(temp,0)+1
+                
+        del dic[width]
+        if not dic: return len(wall)
+        return len(wall) - max(list(dic.values()))
