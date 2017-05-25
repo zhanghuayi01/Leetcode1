@@ -1,0 +1,15 @@
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        res = []
+        self.dp(nums,0,[],res)
+        return res
+    
+    
+    def dp(self,nums,ind,path,res):
+        res.append(path)
+        for i in xrange(ind,len(nums)):
+            self.dp(nums,i + 1,path+[nums[i]],res)
