@@ -1,0 +1,26 @@
+import random
+class Solution(object):
+
+    def __init__(self, nums):
+        """
+        
+        :type nums: List[int]
+        :type numsSize: int
+        """
+        self.lst = nums
+        
+
+    def pick(self, target):
+        """
+        :type target: int
+        :rtype: int
+        """
+        templst = []
+        for i,v in enumerate(self.lst):
+            if v == target:
+                templst += [i]
+        return templst[random.randint(0,len(templst)-1)]
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(nums)
+# param_1 = obj.pick(target)
