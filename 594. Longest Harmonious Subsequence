@@ -1,0 +1,15 @@
+class Solution(object):
+    def findLHS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dic = {}
+        for i in nums:
+            dic[i] = dic.get(i,0) + 1
+         
+        res = 0   
+        for i in dic:
+            temp = max(dic[i] + dic.get(i+1,-20000),dic[i] + dic.get(i-1,-20000))
+            res = max(temp,res)
+        return res
