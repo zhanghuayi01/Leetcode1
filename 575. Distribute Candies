@@ -1,0 +1,9 @@
+class Solution(object):
+    def distributeCandies(self, candies):
+        """
+        :type candies: List[int]
+        :rtype: int
+        """
+        lst = set(candies)
+        amount = len(candies)/2
+        return min(amount,len(lst))
