@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def findMode(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root: return []
+        dic = {}
+        quene = [root]
+        while quene:
+            for leaf in quene:
+                dic[leaf.val] = dic.get(leaf.val,0)+1
+            quene = [leaf for node in quene for leaf in (node.left,node.right) if leaf]
+        res = []
+        temp = 0
+        for key in dic:
+            if dic[key] > temp:
+                res = [key]
+                temp = dic[key]
+            elif dic[key] == temp:
+                res += [key]
+                
+        return res
