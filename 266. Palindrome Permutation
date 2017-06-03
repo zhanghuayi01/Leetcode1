@@ -1,0 +1,19 @@
+class Solution(object):
+    def canPermutePalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        table = {}
+        for i in xrange(len(s)):
+            table[s[i]] = table.get(s[i],0) + 1
+            
+        single = False
+        
+        for i in table:
+            if table[i]%2 != 0 and not single:
+                single = True
+            elif table[i]%2 != 0 and single:
+                return False
+            
+        return True
