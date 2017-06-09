@@ -1,0 +1,11 @@
+class Solution(object):
+    def findContestMatch(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        lst = range(1,n+1)
+        temp = ['('+str(lst[i])+','+str(lst[n-i-1])+')' for i in range(n/2)]
+        while len(temp) > 1:
+            temp = ['('+temp[j]+','+temp[len(temp)-j-1]+')' for j in range(len(temp)/2)]
+        return temp[0]
