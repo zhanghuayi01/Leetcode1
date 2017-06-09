@@ -1,0 +1,23 @@
+class Solution(object):
+    def wiggleSort(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        if len(nums) < 2: return
+        nums.sort()
+        if len(nums)%2 == 0:
+            nums1 = nums[:len(nums)/2]
+            nums2 = sorted(nums[len(nums)/2:],reverse = True)
+            for i in range(0,len(nums),2):
+                nums[i] = nums1[i/2]
+                nums[i+1] = nums2[i/2]
+        else:
+            temp = nums[len(nums)//2]
+            nums1 = nums[:len(nums)/2]
+            nums2 = sorted(nums[len(nums)/2+1:],reverse = True)
+            for i in range(0,len(nums)-1,2):
+                nums[i] = nums1[i/2]
+                nums[i+1] = nums2[i/2]
+            nums[-1] = temp
+        return
