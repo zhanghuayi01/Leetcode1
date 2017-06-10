@@ -1,0 +1,18 @@
+class Solution(object):
+    def validSquare(self, p1, p2, p3, p4):
+        """
+        :type p1: List[int]
+        :type p2: List[int]
+        :type p3: List[int]
+        :type p4: List[int]
+        :rtype: bool
+        """
+        lst = [p1,p2,p3,p4]
+        dic = {}
+        def helper(p1,p2):
+            return ((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)**0.5
+        for i in range(4):
+            for j in range(i+1,4):
+                dic[helper(lst[i],lst[j])] = dic.get(helper(lst[i],lst[j]),0)+1
+            
+        return len(dic.values())==2 and 2 in dic.values() and 4 in dic.values()
