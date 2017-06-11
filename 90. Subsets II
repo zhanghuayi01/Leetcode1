@@ -1,0 +1,22 @@
+class Solution(object):
+    def subsetsWithDup(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        res = []
+        nums.sort()
+        def dfs(nums,path,i,res):
+            if i == len(nums):
+                if path not in res:
+                    res.append(path)
+                return
+            dfs(nums,path+[nums[i]],i+1,res)
+            dfs(nums,path,i+1,res)
+        
+        dfs(nums,[],0,res)
+                
+        return res
+        
+    
+        
