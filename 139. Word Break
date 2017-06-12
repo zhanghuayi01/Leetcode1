@@ -1,0 +1,14 @@
+class Solution(object):
+    def wordBreak(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: bool
+        """
+        if not s: return True
+        lst = [False]*len(s)
+        for i in range(len(s)):
+            for word in wordDict:
+                if s[i-len(word)+1:i+1] == word and (lst[i-len(word)] or i-len(word)+1 == 0):
+                    lst[i] = True
+        return lst[-1]
