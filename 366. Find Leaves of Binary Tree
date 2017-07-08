@@ -1,0 +1,25 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def findLeaves(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        self.col = collections.defaultdict(list)
+        self.lvlcounter(root)
+        return [self.col[i] for i in sorted(self.col)]
+          
+    def lvlcounter(self,root):
+        if not root: 
+            res = 0
+        else:
+            res = 1 + max(self.lvlcounter(root.left),self.lvlcounter(root.right))
+        if root:
+            self.col[res].append(root.val)
+        return res
