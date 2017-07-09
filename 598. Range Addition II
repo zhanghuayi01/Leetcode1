@@ -1,0 +1,13 @@
+class Solution(object):
+    def maxCount(self, m, n, ops):
+        """
+        :type m: int
+        :type n: int
+        :type ops: List[List[int]]
+        :rtype: int
+        """
+        minl,minr = m,n
+        for op in ops:
+            minl = min(minl,op[0])
+            minr = min(minr,op[1])
+        return minl*minr
