@@ -1,0 +1,13 @@
+class Solution(object):
+    def numTrees(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        res = 0
+        dict = [0] * (n+1)
+        dict[0] = 1
+        for i in xrange(1,n+1):
+            for j in xrange(1,i+1):
+                dict[i] += dict[j-1] * dict[i-j]
+        return dict[n]
