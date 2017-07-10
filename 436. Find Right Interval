@@ -1,0 +1,20 @@
+# Definition for an interval.
+# class Interval(object):
+#     def __init__(self, s=0, e=0):
+#         self.start = s
+#         self.end = e
+
+class Solution(object):
+    def findRightInterval(self, intervals):
+        """
+        :type intervals: List[Interval]
+        :rtype: List[int]
+        """
+        dict = sorted((e.start,i) for i, e in enumerate(intervals))
+        lst,idxs = [x[0] for x in dict],[x[1] for x in dict]
+        res = []
+        for e in intervals:
+            pos = bisect.bisect_left(lst,e.end)
+            res.append(idxs[pos] if pos < len(lst) else -1)
+        return res
+            
