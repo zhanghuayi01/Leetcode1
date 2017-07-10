@@ -1,0 +1,23 @@
+class Solution(object):
+    def decodeString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        queue = []
+        time = 1
+        isnum = False
+        res = ''
+        for i in xrange(len(s)):
+            if s[i] == '[': queue.append(i)
+            elif s[i] == ']':
+                l = queue.pop()
+                if not queue:
+                    res += time * self.decodeString(s[l+1:i])
+            elif s[i].isnumeric():
+                if not queue:
+                    time = int(s[i]) if (i==0 or not s[i-1].isnumeric()) else (10 * time + int(s[i]))
+            else:
+                if not queue:
+                    res += s[i]
+        return res
