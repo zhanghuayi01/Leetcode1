@@ -1,0 +1,8 @@
+class Solution(object):
+    def findUnsortedSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        lst = [a==b for a,b in zip(nums,sorted(nums))]
+        return 0 if all(lst) else len(nums) - lst.index(False) - lst[::-1].index(False)
