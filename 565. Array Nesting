@@ -1,0 +1,20 @@
+class Solution(object):
+    def arrayNesting(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        res = 0
+        i = 0
+        count = 0
+        lst = [0]*len(nums)
+        while i < len(nums):
+            if not lst[i]:
+                lst[i] = 1
+                count += 1
+                i = nums[i]
+            else:
+                res = max(res,count)
+                count = 0
+                i += 1
+        return res
