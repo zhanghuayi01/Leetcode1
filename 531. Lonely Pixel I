@@ -1,0 +1,24 @@
+class Solution(object):
+    def findLonelyPixel(self, picture):
+        """
+        :type picture: List[List[str]]
+        :rtype: int
+        """
+        l1,l2 = [],[]
+        res = 0
+        for i in xrange(len(picture)):
+            if ''.join(picture[i]).count('B') <= 1: l1 += [True]
+            else: l1 += [False]
+                
+        for i in xrange(len(picture[0])):
+            temp = ''
+            for j in xrange(len(picture)):
+                temp += picture[j][i]
+            if temp.count('B') <= 1: l2 += [True]
+            else: l2 += [False]
+                
+        for i in xrange(len(picture)):
+            for j in xrange(len(picture[0])):
+                if picture[i][j] == 'B' and l1[i] == True and l2[j] == True: res+= 1
+        
+        return res
