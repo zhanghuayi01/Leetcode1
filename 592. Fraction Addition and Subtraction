@@ -1,0 +1,5 @@
+from fractions import Fraction
+class Solution(object):
+    def fractionAddition(self, exp):
+        res = sum(map(Fraction, exp.replace('+', ' +').replace('-', ' -').split()))
+        return str(res.numerator) + '/' + str(res.denominator)
