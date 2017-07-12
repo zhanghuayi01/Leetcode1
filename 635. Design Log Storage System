@@ -1,0 +1,34 @@
+class LogSystem(object):
+
+    def __init__(self):
+        self.dict = {}
+
+
+    def put(self, id, timestamp):
+        """
+        :type id: int
+        :type timestamp: str
+        :rtype: void
+        """
+        self. dict[id] = timestamp
+
+    def retrieve(self, s, e, gra):
+        """
+        :type s: str
+        :type e: str
+        :type gra: str
+        :rtype: List[int]
+        """
+        content = {'Year':5,'Month':8,'Day':11,'Hour':14,'Minute':17,'Second':20}
+        index = content[gra]
+        res = []
+        for key in self.dict:
+            if s[:index]<=self.dict[key][:index]<=e[:index] : res += [key]
+        return res
+        
+
+
+# Your LogSystem object will be instantiated and called as such:
+# obj = LogSystem()
+# obj.put(id,timestamp)
+# param_2 = obj.retrieve(s,e,gra)
