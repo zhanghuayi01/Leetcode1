@@ -1,0 +1,30 @@
+class Solution(object):
+    def shoppingOffers(self, price, special, needs):
+        """
+        :type price: List[int]
+        :type special: List[List[int]]
+        :type needs: List[int]
+        :rtype: int
+        """
+        def compare(special,need):
+            newneed = need[:]
+            for i in range(len(need)):
+                newneed[i] = need[i] - special[i]
+            return newneed, special[-1]
+        
+        def dfs(price,special,needs,path,res):
+            Found  =False
+            for s in special:
+                newneed,offerp = compare(s,needs)
+                if all(x >= 0 for x in newneed):
+                    res = min(res,dfs(price,special,newneed,path + offerp,res))
+                    Found = True
+            if not Found:
+                for i,item in enumerate(needs):
+                    if item: path += item * price[i]
+                res = min(res,path)
+            return res
+        if all(p == 0 for p in price): return 0
+        res = 10000
+        res = dfs(price,special,needs,0,res)
+        return res
