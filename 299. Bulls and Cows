@@ -1,0 +1,27 @@
+class Solution(object):
+    def getHint(self, secret, guess):
+        """
+        :type secret: str
+        :type guess: str
+        :rtype: str
+        """
+        dic = collections.defaultdict(list)
+        lst = [0]*len(secret)
+        a,b = 0,0
+        for i in range(len(secret)):
+            dic[secret[i]] += [i]
+            
+        for i in range(len(guess)):
+            if guess[i] not in dic: continue
+            elif i in dic[guess[i]]:
+                a += 1
+                dic[guess[i]].remove(i)
+                lst[i] = 1
+        
+        for i in range(len(guess)):
+            if lst[i] or guess[i] not in dic or not dic[guess[i]]: continue
+            else: 
+                b += 1
+                dic[guess[i]].pop()
+                
+        return str(a)+'A'+str(b)+'B'
