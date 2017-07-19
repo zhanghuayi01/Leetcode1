@@ -1,0 +1,13 @@
+class Solution(object):
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+        if not citations: return 0
+        citations.sort()
+        if citations[0] >= len(citations): return len(citations)
+        if citations[-1] <= 1: return citations[-1]
+        for i in range(len(citations)-1,0,-1):
+            if citations[len(citations)-i-1]<= i <= citations[len(citations)-i]:
+                return i
