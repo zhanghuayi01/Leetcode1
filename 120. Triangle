@@ -1,0 +1,20 @@
+class Solution(object):
+    def minimumTotal(self, triangle):
+        """
+        :type triangle: List[List[int]]
+        :rtype: int
+        """
+        if not triangle: return 0
+        i = 1
+        presums = [triangle[0][0]]
+        sums = [triangle[0][0]]
+        while i < len(triangle):
+            sums = [0] * len(triangle[i])
+            for j in range(1,len(triangle[i])-1):
+                sums[j] = min(presums[j],presums[j-1]) + triangle[i][j]
+            sums[0] = presums[0] + triangle[i][0]
+            sums[-1] = presums[-1] + triangle[i][-1]
+            presums = sums
+            i += 1
+        res = sums
+        return min(res)
