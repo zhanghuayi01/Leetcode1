@@ -1,0 +1,28 @@
+class Solution(object):
+    def generatePalindromes(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        dict = collections.Counter(s)
+        if sum([v%2 for v in dict.values()]) > 1: return []
+        temp = ''
+        for key in dict:
+            if dict[key]%2:
+                temp = key
+                dict[key] -= 1
+        
+        def helper(dict,temp,total,res):
+            if len(temp) == total:
+                if temp not in res: res += [temp]
+                return
+            for key in dict:
+                if dict[key]:
+                    dict[key] -= 2
+                    helper(dict,key +temp + key,total,res)
+                    dict[key] += 2
+        
+        res = []
+        helper(dict,temp,len(s),res)
+        
+        return res
