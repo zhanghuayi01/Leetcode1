@@ -1,0 +1,15 @@
+class Solution(object):
+    def findRepeatedDnaSequences(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        dict = {}
+        res = []
+        for ind in range(len(s)-9):
+            if s[ind:ind+10] not in dict:
+                dict[s[ind:ind+10]] = 1
+            elif s[ind:ind+10] not in res:
+                res += [s[ind:ind+10]]
+        
+        return res
