@@ -1,0 +1,23 @@
+class Solution(object):
+    def findDuplicate(self, paths):
+        """
+        :type paths: List[str]
+        :rtype: List[List[str]]
+        """
+        dic = collections.defaultdict(list)
+        res = []
+        for path in paths:
+            filepath = path.split(' ')[0]
+            contents = path.split(' ')[1:]
+            for content in contents:
+                contentname = content.split('(')[0]
+                contenttxt = content.split('(')[1][:-1]
+                if contenttxt not in dic:
+                    dic[contenttxt] = [filepath+'/'+contentname]
+                else:
+                    dic[contenttxt] += [filepath+'/'+contentname]
+        
+        for key in dic:
+            if len(dic[key]) > 1: res += [dic[key]]
+                
+        return res
