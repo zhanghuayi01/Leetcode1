@@ -1,0 +1,27 @@
+class Solution(object):
+    def multiply(self, A, B):
+        """
+        :type A: List[List[int]]
+        :type B: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        if not A or not B: return [[]]
+        dictA,dictB = {},{}
+        for i in range(len(A)):
+            if sum(A[i]):
+                dictA[i] = []
+                for j in range(len(A[i])):
+                    if A[i][j]: dictA[i] += [j]
+                        
+        for j in range(len(B)):
+            if sum([B[j][k] for k in range(len(B[0]))]):
+                dictB[j] = {}
+                for k in range(len(B[0])):
+                    if B[j][k]: dictB[j][k] = B[j][k]
+                        
+        res = [[0]*len(B[0]) for _ in range(len(A))]
+        for key in dictA:
+            for j in dictA[key]:
+                if j in dictB:
+                    for k in dictB[j]: res[key][k] += A[key][j]*B[j][k]
+        return res
