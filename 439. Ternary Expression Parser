@@ -1,0 +1,18 @@
+class Solution(object):
+    def parseTernary(self, expression):
+        """
+        :type expression: str
+        :rtype: str
+        """
+        i = len(expression)-1
+        def calculate(e):
+            if e[0] == 'T': return e[2]
+            else: return e[4]
+        while i > -1:
+            if expression[i] == ':':
+                if expression[i-2] == '?':
+                    expression = expression[:i-3] + calculate(expression[i-3:i+2]) + expression[i+2:]
+                    i = len(expression) - 1
+                    continue
+            i -= 1
+        return expression
