@@ -1,0 +1,17 @@
+class Solution(object):
+    def shortestWordDistance(self, words, word1, word2):
+        """
+        :type words: List[str]
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        """
+        dict = collections.defaultdict(list)
+        for i,word in enumerate(words):
+            dict[word] += [i]
+        
+        res = 10000
+        for i,j in itertools.product(dict[word1],dict[word2]):
+            if i == j: continue
+            else: res = min(res,abs(i-j))
+        return res
