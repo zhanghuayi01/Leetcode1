@@ -1,0 +1,18 @@
+# The read4 API is already defined for you.
+# @param buf, a list of characters
+# @return an integer
+# def read4(buf):
+
+class Solution(object):
+    def read(self, buf, n):
+        totalRead = 0
+        while n > 0:
+            temp = [' '] * 4
+            charsRead = read4(temp)
+            if charsRead < 4 or n < 4:
+                buf[totalRead:] = temp[:min(n, charsRead)]
+                return totalRead + min(n, charsRead)
+            n -= charsRead
+            buf[totalRead:] = temp[:4]
+            totalRead += charsRead
+        return totalRead
