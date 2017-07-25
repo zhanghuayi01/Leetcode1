@@ -1,0 +1,29 @@
+class Solution(object):
+    def countComponents(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        def dfs(visited,connections,i):
+            if visited[i]:
+                return
+            visited[i]= 1
+            for j in connections[i]:
+                dfs(visited,connections,j)
+                
+        visited = [0] * n       
+                
+        connections = {_:[] for _ in range(n)}
+        for edge in edges:
+            connections[edge[0]] += [edge[1]]
+            connections[edge[1]] += [edge[0]]
+            
+        res = 0
+        for i in range(n):
+            if not visited[i]:
+                dfs(visited,connections,i)
+                res += 1
+        return res
+                    
+        
