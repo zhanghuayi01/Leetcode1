@@ -1,0 +1,16 @@
+class Solution(object):
+    def findRadius(self, houses, heaters):
+        """
+        :type houses: List[int]
+        :type heaters: List[int]
+        :rtype: int
+        """
+        heaters = sorted(list(set(heaters)))
+        houses = sorted(list(set(houses)))
+        res = 0
+        i = 0
+        for house in houses:
+            while i < len(heaters)-1 and abs(house-heaters[i]) > abs(house-heaters[i+1]): i+= 1
+            res = max(res,abs(house-heaters[i]))
+        res = max(houses[-1]-heaters[-1],res)
+        return res
