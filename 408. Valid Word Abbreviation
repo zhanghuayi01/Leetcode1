@@ -1,0 +1,22 @@
+class Solution(object):
+    def validWordAbbreviation(self, word, abbr):
+        """
+        :type word: str
+        :type abbr: str
+        :rtype: bool
+        """
+        j = 0
+        stack = 0
+        for i in range(len(abbr)):
+            if abbr[i].isnumeric():
+                if not stack and not int(abbr[i]): return False
+                stack = stack * 10 + int(abbr[i])
+            else:
+                j += stack
+                if j >= len(word) or word[j] != abbr[i]:
+                    return False
+                else:
+                    j += 1
+                    stack = 0
+        j += stack
+        return j == len(word)
