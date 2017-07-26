@@ -1,0 +1,26 @@
+class Solution(object):
+    def findPermutation(self, s):
+        """
+        :type s: str
+        :rtype: List[int]
+        """
+        stack = []
+        nums = range(1,len(s)+2)
+        res = [0]*(len(s)+1)
+        l = 0
+        for i in range(len(s)):
+            if s[i] == 'D':
+                stack += [i]
+            else:
+                res[i] = nums[l]
+                l += 1
+                for w,k in zip(stack,nums[l:l+len(stack)][::-1]):
+                    res[w] = k
+                l += len(stack)
+                stack = []
+        res[-1] = nums[l]
+        l += 1
+        if stack:
+            for w,k in zip(stack,nums[l:l+len(stack)][::-1]):
+                    res[w] = k
+        return res
