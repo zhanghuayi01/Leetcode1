@@ -1,0 +1,11 @@
+class Solution(object):
+    def originalDigits(self, s):
+        numbers = [('zero',0),('two',2),('eight',8),('four',4),('one',1),('three',3),('five',5),('six',6),                  ('seven',7),('nine',9)]
+        res, S = [], collections.Counter(s)
+        for n in numbers:
+            c = collections.Counter(n[0])
+            while c&S == c:
+                res.append(n[1])
+                S -= c
+        return ''.join([str(i) for i in sorted(res)])
+            
