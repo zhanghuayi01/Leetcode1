@@ -1,0 +1,27 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def countUnivalSubtrees(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        dict = {}
+        self.count = 0
+        def dfs(root,path):
+            if not root: return True
+            if path in dict: return dict[path]
+            Same = True
+            if (root.left and root.left.val != root.val) or (root.right and root.right.val != root.val): Same = False
+            left,right = dfs(root.left,path+'-'),dfs(root.right,path+'+')
+            dict[path] = left and right and Same
+            if dict[path]: self.count += 1
+            return dict[path]
+        
+        dfs(root,'')
+        return self.count
