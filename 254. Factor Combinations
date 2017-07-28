@@ -1,0 +1,17 @@
+class Solution(object):
+    def getFactors(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        def helper(n,path,res):
+            if n**0.5 < 2: return
+            for i in range(2,int(n**0.5)+1):
+                if not n%i:
+                    if (path and n/i >= path[-1] and i >= path[-1]) or (not path):
+                        res += [path + [i,n/i]]
+                        helper(n/i,path+[i],res)
+        
+        res = []
+        helper(n,[],res)
+        return res
