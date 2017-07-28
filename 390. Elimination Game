@@ -1,0 +1,17 @@
+class Solution(object):
+    def lastRemaining(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def helper(n,left):
+            if n == 1: return n
+            print n
+            if left:
+                return helper(n//2,0)*2
+            elif not n%2:
+                return helper(n//2,1)*2 - 1
+            else:
+                return helper(n//2,1)*2
+        
+        return helper(n,1)
