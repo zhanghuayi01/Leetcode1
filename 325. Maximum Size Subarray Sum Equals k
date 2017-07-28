@@ -1,0 +1,25 @@
+class Solution(object):
+    def maxSubArrayLen(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        ans = 0
+        res = 0
+        lst = []
+        for x in nums:
+            res += x
+            lst += [res]
+        lst = [0]+lst
+        dict = collections.defaultdict()
+        for i,v in enumerate(lst):
+            if v not in dict:
+                dict[v] = i
+            
+        for i in range(len(lst))[::-1]:
+            if lst[i]-k in dict:
+                temp = i-dict[lst[i]-k]
+                ans = max(ans,temp)
+        
+        return ans
