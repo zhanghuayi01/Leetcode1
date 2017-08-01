@@ -1,0 +1,21 @@
+import math
+import functools
+import operator
+class Solution(object):
+    def rangeBitwiseAnd(self, m, n):
+        """
+        :type m: int
+        :type n: int
+        :rtype: int
+        """
+        if m == 0:
+            return 0
+        
+        if m == n:
+            return n
+        
+        if int(math.log(m,2)) < int(math.log(n,2)):
+            return 0
+        
+        return functools.reduce(operator.and_, range(m,n+1))
+        
