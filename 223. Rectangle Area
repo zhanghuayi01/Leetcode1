@@ -1,0 +1,22 @@
+class Solution(object):
+    def computeArea(self, A, B, C, D, E, F, G, H):
+        """
+        :type A: int
+        :type B: int
+        :type C: int
+        :type D: int
+        :type E: int
+        :type F: int
+        :type G: int
+        :type H: int
+        :rtype: int
+        """
+        a1 =  (D-B) * (C-A) + (G-E) * (H-F)
+        if min(A,C) > max(E,G) or min(E,G) > max(A,C): return a1
+        if min(B,D) > max(F,H) or min(F,H) > max(B,D): return a1
+        x = [A,C,E,G]
+        y = [B,D,F,H]
+        x.sort()
+        y.sort()
+        return a1 - (x[2] - x[1]) * (y[2]-y[1])
+        
