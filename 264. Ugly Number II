@@ -1,0 +1,21 @@
+class Solution(object):
+    def nthUglyNumber(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        count = 1
+        u2,u3,u5 = 0,0,0
+        heap = [1]
+        while count < n:
+            n2,n3,n5 = heap[u2]*2,heap[u3]*3,heap[u5]*5
+            minn = min(n2,n3,n5)
+            if n2 == minn:
+                u2 += 1
+            if n3 == minn:
+                u3 += 1
+            if n5 == minn:
+                u5 += 1
+            heap += [minn]
+            count += 1
+        return heap[-1]
