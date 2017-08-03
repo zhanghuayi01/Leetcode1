@@ -1,0 +1,13 @@
+class Solution(object):
+    def maxRotateFunction(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        totalsum = sum(A)
+        lmax = sum(map(lambda x,y:x*y,A,range(len(A))))
+        gmax = lmax
+        for i in range(len(A)-1,0,-1):
+            lmax += totalsum - A[i] * len(A)
+            gmax = max(lmax,gmax)
+        return gmax
