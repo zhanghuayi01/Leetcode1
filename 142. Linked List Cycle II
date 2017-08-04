@@ -1,0 +1,32 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def detectCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if not head: return None
+        if not head.next: return None
+        slow,fast = head,head
+        while slow and fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow is fast:
+                count = 1
+                while fast.next is not slow:
+                    fast = fast.next
+                    count += 1
+                slow,fast = head,head
+                while count:
+                    fast = fast.next
+                    count -= 1
+                while slow is not fast:
+                    slow = slow.next
+                    fast = fast.next
+                return slow
+        return None
