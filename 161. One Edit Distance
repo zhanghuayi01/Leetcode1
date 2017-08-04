@@ -1,0 +1,17 @@
+class Solution(object):
+    def isOneEditDistance(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        n1,n2 = len(s),len(t)
+        def check(i):
+            if i == n1: return len(t[i:]) == 1
+            if i == n2: return len(s[i:]) == 1
+            if s[i] == t[i]: return check(i+1)
+            if n1 > n2: return s[i+1:] == t[i:]
+            if n1 == n2: return s[i+1:] == t[i+1:]
+            else: return s[i:] == t[i+1:]
+        res = check(0)
+        return res
