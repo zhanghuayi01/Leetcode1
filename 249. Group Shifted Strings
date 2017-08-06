@@ -1,0 +1,23 @@
+class Solution(object):
+    def groupStrings(self, strings):
+        """
+        :type strings: List[str]
+        :rtype: List[List[str]]
+        """
+        s = 'abcdefghijklmnopqrstuvwxyza'
+
+        dict = collections.defaultdict(list)
+        
+        for string in strings:
+            temp = ''
+            for i in range(1,len(string)):
+                a,b = s.find(string[i]),s.find(string[i-1])
+                if abs(a-b) > 13: x = (26 - abs(a-b))*(a-b)/abs(a-b)*(-1)
+                elif abs(a-b) == 13: x = 13
+                else: x = a - b
+                temp += str(x) + ','
+            dict[temp] += [string]
+            print temp
+            
+        return sorted([value for value in dict.values()],key = lambda x: len(x[0]))
+            
