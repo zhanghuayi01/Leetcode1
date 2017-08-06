@@ -1,0 +1,17 @@
+class Solution(object):
+    def replaceWords(self, dict, s):
+        """
+        :type dict: List[str]
+        :type sentence: str
+        :rtype: str
+        """
+        lst = s.split(' ')
+        dic = set(dict)
+            
+        res = ''
+        def replace(word):
+            for i in xrange(len(word)):
+                if word[:i] in dic:
+                    return word[:i]
+            return word
+        return ' '.join(map(replace,lst))
