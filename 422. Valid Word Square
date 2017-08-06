@@ -1,0 +1,12 @@
+class Solution(object):
+    def validWordSquare(self, words):
+        """
+        :type words: List[str]
+        :rtype: bool
+        """
+        if len(words) != len(words[0]): return False
+        for i in range(len(words)):
+            row = words[i]
+            col = ''.join([word[i] for word in words if len(word) > i])
+            if col != row: return False
+        return True
