@@ -1,0 +1,9 @@
+class Solution(object):
+    def maxA(self, N):
+        best = [0, 1]
+        for x in xrange(2, N+1):
+            cur = best[x-1] + 1
+            for y in xrange(x-1):
+                cur = max(cur, best[y] * (x-y-1))
+            best.append(cur)
+        return best[N]
