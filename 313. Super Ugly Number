@@ -1,0 +1,18 @@
+class Solution(object):
+    def nthSuperUglyNumber(self, n, primes):
+        """
+        :type n: int
+        :type primes: List[int]
+        :rtype: int
+        """
+        res = [0,1]
+        count = 0
+        coeff = [1] * len(primes)
+        while count < n:
+            nxt = min(map(lambda x,y: x*y,[res[co] for co in coeff],primes))
+            for i in range(len(coeff)):
+                if nxt == primes[i] * res[coeff[i]]: coeff[i] += 1
+            res += [nxt]
+            count += 1
+        return res[n]
+            
