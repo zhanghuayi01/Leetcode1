@@ -1,0 +1,23 @@
+class Solution(object):
+    def allPathsSourceTarget(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        visited = [0]
+        path = [0]
+        cur_index = 0
+        self.ans = []
+        def dfs(path,visited,graph,cur_index):
+            if cur_index == len(graph) - 1: 
+                self.ans += [path]
+                return
+            for i in graph[cur_index]:
+                if i not in visited:
+                    dfs(path+[i],visited+[i],graph,i)
+                else:
+                    continue
+        
+        dfs(path,visited,graph,cur_index)
+        
+        return self.ans
