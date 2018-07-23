@@ -1,0 +1,28 @@
+class Solution(object):
+    def matrixScore(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: int
+        """
+        def toggle(a):
+            res = []
+            for i in range(len(a)):
+                res += [1-a[i]]
+            return res
+        
+        for i,a in enumerate(A):
+            if a[0] != 1:
+                A[i] = toggle(a)
+                
+        for i in range(len(A[0])):
+            temp = []
+            for j in range(len(A)):
+                temp += [A[j][i]]
+            if sum(temp) < len(temp)/2.0:
+                for j in range(len(A)):
+                    A[j][i] = 1-A[j][i]
+        res = 0
+        for a in A:
+            res += int(''.join(map(str,a)),2)
+        
+        return res
