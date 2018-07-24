@@ -1,0 +1,18 @@
+class Solution(object):
+    def canVisitAllRooms(self, rooms):
+        """
+        :type rooms: List[List[int]]
+        :rtype: bool
+        """
+        self.visited = [0]
+        self.queue = rooms[0]
+        while self.queue:
+            key = self.queue[0]
+            self.queue = self.queue[1:]
+            if key not in self.visited:
+                self.visited += [key]
+                self.queue += rooms[key]
+            else:
+                continue
+        if len(self.visited) == len(rooms): return True
+        else: return False
