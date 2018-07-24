@@ -1,0 +1,28 @@
+import collections
+class Solution(object):
+    def partitionLabels(self, S):
+        """
+        :type S: str
+        :rtype: List[int]
+        """
+        
+        c = collections.Counter(S)
+        visited = []
+        res = []
+        stack = 0
+        count = 0
+        
+        for lit in S:
+            if lit not in visited:
+                visited += [lit]
+                stack += c[lit]
+            count += 1
+            if count == stack:
+                res +=[count]
+                stack = 0
+                count = 0
+                
+        return res
+        
+        
+                
